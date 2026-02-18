@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>MK1 Game</title>
-<style>
-body{
-    margin:0;
-    padding:0;
-    background:url('file_0000000067b871fab43cd423734e3483.png') no-repeat center center fixed;
-    background-size:cover;
-    overflow:hidden;
-    font-family:Arial;
-    color:white;
-    text-align:center;
-}
+  <title>MK1 Game</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
 
-h1{
-    position:absolute;
-    top:45%;
-    width:100%;
-    font-size:60px;
-    letter-spacing:5px;
-    animation:slide 3s infinite alternate;
-    text-shadow:0 0 20px orange,0 0 40px red;
-}
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+    }
 
-@keyframes slide{
-    from{transform:translateX(-100%);}
-    to{transform:translateX(100%);}
-}
-</style>
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.8;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4b2b;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff416c;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
 
-<h1>MK1 GAME</h1>
+  <div class="card">
+    <h1>MK1 GAME</h1>
+    <p>Welcome to my first game project 🚀</p>
+    <button onclick="alert('Game Start!')">Start Game</button>
+  </div>
 
 </body>
 </html>
