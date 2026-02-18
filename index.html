@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MK1 Game</title>
+<title>MK1 Game - Esports</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body{
@@ -18,107 +18,150 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
-    background: url("background.jpg") no-repeat center center/cover;
+    background: url("esport.jpg") no-repeat center center/cover;
     overflow:hidden;
     position:relative;
 }
 
-/* เอฟเฟกต์ไฟวิ่งทั้งจอ */
-body::before{
+/* Overlay มืดเพื่อให้อ่านง่าย */
+body::after{
     content:"";
     position:absolute;
-    width:200%;
-    height:200%;
-    background:linear-gradient(
-        45deg,
-        red, orange, yellow, lime, cyan, blue, violet, red
-    );
-    background-size:400%;
-    animation: rainbow 15s linear infinite;
-    opacity:0.15;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
     z-index:0;
 }
 
-@keyframes rainbow{
-    0%{background-position:0%}
-    100%{background-position:400%}
+/* พาร์ทิเคิล */
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
 }
 
 .container{
     text-align:center;
-    position:relative;
-    z-index:1;
+    z-index:2;
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 40px rgba(255,0,150,0.5);
 }
 
-/* ชื่อเว็บ */
+/* ชื่อ */
 h1{
-    font-size:65px;
-    color:white;
-    letter-spacing:3px;
-    text-shadow:0 0 20px #ff00ff, 0 0 40px #00ffff;
+    font-size:60px;
+    letter-spacing:4px;
+    color:#ff2ea6;
+    text-shadow:0 0 20px #ff00ff;
     animation: glow 2s infinite alternate;
 }
 
 @keyframes glow{
-    from{ text-shadow:0 0 15px red,0 0 25px yellow; }
-    to{ text-shadow:0 0 25px cyan,0 0 50px magenta; }
+    from{ text-shadow:0 0 10px #ff0080;}
+    to{ text-shadow:0 0 30px #ff00ff;}
+}
+
+.subtitle{
+    margin-top:10px;
+    font-size:18px;
+    opacity:0.8;
 }
 
 /* ปุ่ม */
 .button{
     display:inline-block;
     margin:15px;
-    padding:15px 50px;
-    font-size:20px;
+    padding:15px 45px;
+    font-size:18px;
     color:white;
     text-decoration:none;
-    border-radius:40px;
-    position:relative;
-    overflow:hidden;
-    transition:0.3s ease;
-}
-
-.button::before{
-    content:"";
-    position:absolute;
-    top:-50%;
-    left:-50%;
-    width:200%;
-    height:200%;
-    background:linear-gradient(
-        45deg,
-        red, orange, yellow, lime, cyan, blue, violet
-    );
-    background-size:400%;
-    animation: rainbow 5s linear infinite;
-    z-index:-1;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff0080,#ff4dc4);
+    box-shadow:0 0 20px #ff0080;
+    transition:0.3s;
 }
 
 .button:hover{
     transform:scale(1.1);
-    box-shadow:0 0 20px white;
+    box-shadow:0 0 40px #ff00ff;
 }
 
-.button:active{
-    transform:scale(0.95);
+.footer{
+    margin-top:20px;
+    font-size:14px;
+    opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+
 <div class="container">
     <h1>MK1 GAME</h1>
+    <div class="subtitle">ESPORTS PLAYER | BRU.FOURDIWA</div>
 
-    <a class="button" href="https://www.facebook.com/share/1B5c7GuPdh/" target="_blank">
-        FACEBOOK
-    </a>
+    <a class="button" href="https://www.facebook.com/share/1B5c7GuPdh/" target="_blank">FACEBOOK</a>
+    <a class="button" href="https://www.instagram.com/non_pim1?igsh=MXRrazNkcGl5eWx6Ng==" target="_blank">INSTAGRAM</a>
 
-    <a class="button" href="https://www.instagram.com/non_pim1?igsh=MXRrazNkcGl5eWx6Ng==" target="_blank">
-        INSTAGRAM
-    </a>
+    <div class="footer">© 2026 MK1 Game - All Rights Reserved</div>
 </div>
+
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+
+class Particle{
+    constructor(){
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+        this.size = Math.random()*3+1;
+        this.speedY = Math.random()*1+0.5;
+    }
+    update(){
+        this.y += this.speedY;
+        if(this.y > canvas.height){
+            this.y = 0;
+            this.x = Math.random()*canvas.width;
+        }
+    }
+    draw(){
+        ctx.fillStyle = "rgba(255,0,150,0.8)";
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fill();
+    }
+}
+
+function init(){
+    for(let i=0;i<120;i++){
+        particlesArray.push(new Particle());
+    }
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let i=0;i<particlesArray.length;i++){
+        particlesArray[i].update();
+        particlesArray[i].draw();
+    }
+    requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
 
 </body>
 </html>
