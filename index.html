@@ -2,6 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MK1 Game</title>
 
 <style>
@@ -20,6 +21,7 @@ body{
     flex-direction:column;
     background: url("background.jpg") no-repeat center center/cover;
     overflow:hidden;
+    position:relative;
 }
 
 /* เอฟเฟกต์ไฟวิ่งทั้งจอ */
@@ -33,8 +35,8 @@ body::before{
         red, orange, yellow, lime, cyan, blue, violet, red
     );
     background-size:400%;
-    animation: rainbow 10s linear infinite;
-    opacity:0.2;
+    animation: rainbow 15s linear infinite;
+    opacity:0.15;
     z-index:0;
 }
 
@@ -43,30 +45,38 @@ body::before{
     100%{background-position:400%}
 }
 
-h1{
-    font-size:60px;
-    color:white;
-    text-shadow:0 0 20px #ff00ff, 0 0 40px #00ffff;
-    animation: glow 2s infinite alternate;
+.container{
+    text-align:center;
+    position:relative;
     z-index:1;
 }
 
+/* ชื่อเว็บ */
+h1{
+    font-size:65px;
+    color:white;
+    letter-spacing:3px;
+    text-shadow:0 0 20px #ff00ff, 0 0 40px #00ffff;
+    animation: glow 2s infinite alternate;
+}
+
 @keyframes glow{
-    from{ text-shadow:0 0 10px red,0 0 20px yellow; }
-    to{ text-shadow:0 0 20px cyan,0 0 40px magenta; }
+    from{ text-shadow:0 0 15px red,0 0 25px yellow; }
+    to{ text-shadow:0 0 25px cyan,0 0 50px magenta; }
 }
 
 /* ปุ่ม */
 .button{
-    margin-top:20px;
-    padding:15px 40px;
+    display:inline-block;
+    margin:15px;
+    padding:15px 50px;
     font-size:20px;
     color:white;
     text-decoration:none;
-    border-radius:30px;
+    border-radius:40px;
     position:relative;
     overflow:hidden;
-    z-index:1;
+    transition:0.3s ease;
 }
 
 .button::before{
@@ -81,19 +91,17 @@ h1{
         red, orange, yellow, lime, cyan, blue, violet
     );
     background-size:400%;
-    animation: rainbow 4s linear infinite;
+    animation: rainbow 5s linear infinite;
     z-index:-1;
 }
 
 .button:hover{
     transform:scale(1.1);
-    transition:0.3s;
+    box-shadow:0 0 20px white;
 }
 
-.container{
-    text-align:center;
-    position:relative;
-    z-index:1;
+.button:active{
+    transform:scale(0.95);
 }
 </style>
 </head>
