@@ -171,33 +171,3 @@ animate();
 
     <h1 class="neon-text">MK1 GAME</h1>
     <div class="subtitle">ESPORTS PLAYER | BRU.FOURDIWA</div>
-    /* โลโก้ */
-.logo{
-    width:160px;
-    margin-bottom:20px;
-    border-radius:20px;
-    box-shadow:0 0 40px #ff00ff;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-    0%{ transform:translateY(0px);}
-    50%{ transform:translateY(-10px);}
-    100%{ transform:translateY(0px);}
-}
-
-/* ไฟวิ่งบนตัวหนังสือ */
-.neon-text{
-    font-size:60px;
-    letter-spacing:4px;
-    background:linear-gradient(90deg,#ff0080,#ffffff,#ff00ff,#ff0080);
-    background-size:300%;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:shine 4s linear infinite;
-}
-
-@keyframes shine{
-    0%{ background-position:0%;}
-    100%{ background-position:300%;}
-}
