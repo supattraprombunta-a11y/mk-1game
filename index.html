@@ -1,62 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>MK1 Game</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>MK1 Game</title>
 
-    .card {
-      background: rgba(255,255,255,0.1);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-      backdrop-filter: blur(10px);
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background: url("background.jpg") no-repeat center center/cover;
+    overflow:hidden;
+}
 
-    p {
-      opacity: 0.8;
-    }
+/* เอฟเฟกต์ไฟวิ่งทั้งจอ */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        45deg,
+        red, orange, yellow, lime, cyan, blue, violet, red
+    );
+    background-size:400%;
+    animation: rainbow 10s linear infinite;
+    opacity:0.2;
+    z-index:0;
+}
 
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #ff4b2b;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+@keyframes rainbow{
+    0%{background-position:0%}
+    100%{background-position:400%}
+}
 
-    button:hover {
-      background: #ff416c;
-      transform: scale(1.05);
-    }
-  </style>
+h1{
+    font-size:60px;
+    color:white;
+    text-shadow:0 0 20px #ff00ff, 0 0 40px #00ffff;
+    animation: glow 2s infinite alternate;
+    z-index:1;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px red,0 0 20px yellow; }
+    to{ text-shadow:0 0 20px cyan,0 0 40px magenta; }
+}
+
+/* ปุ่ม */
+.button{
+    margin-top:20px;
+    padding:15px 40px;
+    font-size:20px;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    position:relative;
+    overflow:hidden;
+    z-index:1;
+}
+
+.button::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        45deg,
+        red, orange, yellow, lime, cyan, blue, violet
+    );
+    background-size:400%;
+    animation: rainbow 4s linear infinite;
+    z-index:-1;
+}
+
+.button:hover{
+    transform:scale(1.1);
+    transition:0.3s;
+}
+
+.container{
+    text-align:center;
+    position:relative;
+    z-index:1;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="card">
+<div class="container">
     <h1>MK1 GAME</h1>
-    <p>Welcome to my first game project 🚀</p>
-    <button onclick="alert('Game Start!')">Start Game</button>
-  </div>
+
+    <a class="button" href="https://www.facebook.com/share/1B5c7GuPdh/" target="_blank">
+        FACEBOOK
+    </a>
+
+    <a class="button" href="https://www.instagram.com/non_pim1?igsh=MXRrazNkcGl5eWx6Ng==" target="_blank">
+        INSTAGRAM
+    </a>
+</div>
 
 </body>
 </html>
